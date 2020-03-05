@@ -164,14 +164,16 @@ function calculateWinner(squares){
   return null;
 }
 
-function randomNumber(){
+function randomNumber(squares){
   let spot = Math.ceil(Math.random()*10) -1;
   
-  if(spot >= 0 && spot < 9){
+  if(spot >= 0 && spot < 9 && squares[spot] == null){
     return spot;
+  }else if(squares[spot] != null){
+    return;
   }
   
-  return randomNumber();
+  return randomNumber(squares);
 }
 
 function randomBot(squares, playerAtual){
@@ -216,7 +218,7 @@ function randomBot(squares, playerAtual){
   }
   
   if(jogadas.length > 1 || jogadas[0] == null){
-    return randomNumber();
+    return randomNumber(squares);
   }else{
     return jogadas[0];
   }
